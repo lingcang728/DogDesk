@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DogDesk | 你的桌面 AI 翻译小狗助手</title>
+    <meta name="description" content="DogDesk 是一款常驻桌面的智能小狗助手，支持沉浸式拖拽翻译、深度 AI 理解、多模型接入与久坐提醒功能。立即下载 Windows 版。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <span class="logo-icon">🐕</span>
+                <span class="logo-text">DogDesk</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#features">核心功能</a>
+                <a href="#models">支持模型</a>
+                <a href="#download" class="btn-primary btn-small">下载 Windows 版</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero pt-100">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="badge">🚀 v0.1.0 现已发布</div>
+                    <h1 class="hero-title">你的桌面 AI <span class="text-gradient">翻译小狗</span>助手</h1>
+                    <p class="hero-subtitle">常驻桌面，极速响应。体验前所未有的沉浸式拖拽翻译、深度 AI 阅读理解与久坐健康提醒，完美兼容各类前沿大语言模型。</p>
+                    <div class="hero-actions">
+                        <a href="../release/DogDesk_0.1.0_x64-setup.exe" class="btn-primary btn-large glow-effect">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                            </svg>
+                            下载 .exe (Windows)
+                        </a>
+                        <a href="#features" class="btn-secondary btn-large">探索更多</a>
+                    </div>
+                    <p class="hero-meta">兼容 Windows 10/11 · 支持便携部署</p>
+                </div>
+                <div class="hero-visual">
+                    <div class="glass-mockup window-mockup">
+                        <div class="window-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="window-body">
+                            <div class="dog-container">
+                                <div class="dog-emoji">🐕</div>
+                                <div class="translation-bubble glass-panel">
+                                    <div class="bubble-header">
+                                        <span class="badge-mini">DeepSeek AI</span>
+                                    </div>
+                                    <h4 class="target-text">"The limits of my language mean the limits of my world."
+                                    </h4>
+                                    <p class="translated-text">我语言的局限，即我世界的局限。</p>
+                                    <div class="divider"></div>
+                                    <p class="explanation-text"><span class="highlight">✨
+                                            深度解析：</span><br>这句话出自哲学家维特根斯坦。它意味着我们所能理解和表达的概念范围，决定了我们对这个世界的认知边界。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="features" class="features section">
+            <div class="container">
+                <div class="section-header text-center opacity-0">
+                    <h2 class="section-title">重新定义桌面级的丝滑体验</h2>
+                    <p class="section-desc">抛去一切繁琐的复制粘贴与窗口切换，用最符合直觉的方式获取信息。</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card glass-panel opacity-0">
+                        <div class="feature-icon-wrapper"><span class="feature-icon">✨</span></div>
+                        <h3>沉浸式拖拽投喂</h3>
+                        <p>无需繁琐的快捷键，只要将选中文本拖拽至小狗嘴边。带有真实磁吸手感，小狗吞入后即刻吐出精准翻译，操作行云流水。</p>
+                    </div>
+                    <div class="feature-card glass-panel opacity-0" style="transition-delay: 0.1s;">
+                        <div class="feature-icon-wrapper"><span class="feature-icon">🧠</span></div>
+                        <h3>不仅翻译，更是阅读理解</h3>
+                        <p>彻底告别生硬的机翻直译。DogDesk 将不仅为您呈现翻译，更深度剖析“这句话真正在说什么”，提供背景信息与词典级解释。</p>
+                    </div>
+                    <div class="feature-card glass-panel opacity-0" style="transition-delay: 0.2s;">
+                        <div class="feature-icon-wrapper"><span class="feature-icon">⚡</span></div>
+                        <h3>全局快捷 极速唤醒</h3>
+                        <p>在任意应用程序中选中文档或网页文本，按下 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>，瞬间呼出翻译悬浮面板，永不打断您的专注心流。</p>
+                    </div>
+                    <div class="feature-card glass-panel opacity-0" style="transition-delay: 0.3s;">
+                        <div class="feature-icon-wrapper"><span class="feature-icon">⏳</span></div>
+                        <h3>贴心久坐 健康守护</h3>
+                        <p>沉浸工作忘记了时间？小狗默认每 30 分钟便会在屏幕边缘欢快跑动，温柔地提醒您起身喝水活动，守护身体健康。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="models" class="models section bg-darker">
+            <div class="container text-center opacity-0">
+                <h2 class="section-title">生态开放，百川归海</h2>
+                <p class="section-desc">自带免费基础兜底翻译。只要填入您的 API Key，即可召唤全球最顶尖的 AI 大脑。</p>
+                <div class="models-showcase">
+                    <div class="model-pill">DeepSeek</div>
+                    <div class="model-pill outline">OpenAI</div>
+                    <div class="model-pill outline">Claude</div>
+                    <div class="model-pill outline">Gemini</div>
+                    <div class="model-pill outline">Groq</div>
+                    <div class="model-pill outline">Ollama</div>
+                    <div class="model-pill outline">xAI</div>
+                </div>
+                <p class="models-note mt-20">本地化数据直连大模型厂商 API，应用不收集任何隐私数据，安全透明。</p>
+            </div>
+        </section>
+        <section id="download" class="cta section">
+            <div class="container text-center relative z-10">
+                <div class="cta-glass glass-panel opacity-0">
+                    <h2 class="cta-title">准备好领养属于你的小狗了吗？</h2>
+                    <p class="cta-desc">不到 10MB 的极简安装体积，基于先进系统级 Rust 与 Web 技术构建，内存资源占用极低。</p>
+                    <div class="cta-actions justify-center">
+                        <a href="../release/DogDesk_0.1.0_x64-setup.exe" class="btn-primary btn-large glow-effect">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                            </svg>
+                            免费下载 .exe 首演版
+                        </a>
+                        <a href="./release/DogDesk_0.1.0_x64_en-US.msi" download class="btn-text">
+                            下载 .msi 企业管理版
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <span class="logo-icon">🐕</span> DogDesk
+            </div>
+            <div class="footer-links">
+                <a href="#">支持文档</a>
+                <a href="#">隐私政策</a>
+                <a href="#">GitHub 源码</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2026 开发作者：凌苍. All rights reserved. Made with ❤️ and Tauri.
+            </div>
+        </div>
+    </footer>
+    <script>
+        const observerOptions = {
+            root: null, rootMargin: '0px', threshold: 0.15
+        };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.opacity-0').forEach(el => observer.observe(el));
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+    </script>
+</body>
+
+</html>

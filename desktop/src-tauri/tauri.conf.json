@@ -1,0 +1,62 @@
+{
+    "$schema": "https://raw.githubusercontent.com/nickshanks/tauri-docs/main/tauri-conf-schema.json",
+    "productName": "DogDesk",
+    "version": "0.1.0",
+    "identifier": "com.dogdesk.desktop",
+    "build": {
+        "devUrl": "http://localhost:5173",
+        "frontendDist": "../dist",
+        "beforeDevCommand": "npm run dev",
+        "beforeBuildCommand": "npm run build"
+    },
+    "app": {
+        "windows": [
+            {
+                "label": "dog",
+                "title": "DogDesk",
+                "width": 180,
+                "height": 220,
+                "decorations": false,
+                "transparent": true,
+                "alwaysOnTop": true,
+                "skipTaskbar": true,
+                "resizable": false,
+                "shadow": false,
+                "dragDropEnabled": false
+            },
+            {
+                "label": "translation",
+                "title": "Translation",
+                "url": "/translation.html",
+                "width": 260,
+                "height": 220,
+                "decorations": false,
+                "transparent": true,
+                "alwaysOnTop": true,
+                "skipTaskbar": true,
+                "resizable": false,
+                "visible": false,
+                "shadow": false
+            }
+        ],
+        "security": {
+            "csp": "default-src 'self'; connect-src 'self' https: http://127.0.0.1:* http://localhost:*; script-src 'self'; style-src 'self' 'unsafe-inline'"
+        }
+    },
+    "bundle": {
+        "active": true,
+        "targets": "all",
+        "icon": [
+            "icons/32x32.png",
+            "icons/128x128.png",
+            "icons/128x128@2x.png",
+            "icons/icon.ico"
+        ],
+        "windows": {
+            "nsis": {
+                "installerIcon": "icons/icon.ico"
+            }
+        }
+    },
+    "plugins": {}
+}

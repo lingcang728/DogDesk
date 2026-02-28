@@ -1,0 +1,20 @@
+{
+    "identifier": "default",
+    "description": "DogDesk default capabilities",
+    "windows": [
+        "dog",
+        "translation"
+    ],
+    "permissions": [
+        "core:default",
+        "core:event:default",
+        "core:window:default",
+        "core:window:allow-set-size",
+        "core:window:allow-set-resizable",
+        "core:window:allow-center",
+        "core:window:allow-start-dragging",
+        "global-shortcut:default",
+        "clipboard-manager:default",
+        "autostart:default"
+    ]
+}

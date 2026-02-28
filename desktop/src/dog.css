@@ -1,0 +1,618 @@
+/* ============================================================
+   DogDesk Desktop — Dog Window Styles
+   Transparent background with animated SVG line-art dog
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background: transparent;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#dog-app {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* === Dog Container === */
+.dog-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Slight bg so Windows registers this as a valid drop target */
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 50%;
+    padding: 4px;
+    --magnet-strength: 0;
+}
+
+/* Normal mode: dog sits in center */
+.dog-container.mode-normal {
+    width: 80px;
+    bottom: 4px;
+}
+
+/* Reminder mode: dog runs across full width */
+.dog-container.mode-reminder {
+    width: 100%;
+    height: 100px;
+    right: 0;
+    bottom: 0;
+}
+
+.dog-sprite {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    will-change: transform;
+}
+
+.dog-sprite svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* === DROP TARGET STATE (text being dragged over) === */
+.dog-container.drop-target .dog-sprite {
+    filter: drop-shadow(0 0 12px rgba(255, 193, 7, 0.75));
+}
+
+.dog-container.drop-target .dog-tongue {
+    rx: 5;
+    ry: 4;
+    cy: 56;
+}
+
+.dog-container::before,
+.dog-container::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 56%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.16s ease;
+}
+
+.dog-container.magnet-active::before {
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    opacity: calc(0.18 + (var(--magnet-strength) * 0.54));
+    background:
+        radial-gradient(circle at center, rgba(255, 196, 0, 0.08), transparent 54%),
+        conic-gradient(from 40deg, rgba(255, 153, 0, 0.72), rgba(255, 215, 110, 0.14), rgba(255, 122, 0, 0.6), rgba(255, 153, 0, 0.72));
+    filter: blur(0.35px);
+    animation: magnet-swirl 0.9s linear infinite;
+}
+
+.dog-container.magnet-active::after {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px dashed rgba(255, 153, 0, 0.64);
+    opacity: calc(0.34 + (var(--magnet-strength) * 0.5));
+    animation: magnet-pulse 0.72s ease-in-out infinite;
+}
+
+.dog-container.magnet-active .dog-mouth {
+    stroke-width: 2.2;
+    filter: drop-shadow(0 0 3px rgba(255, 140, 0, 0.7));
+}
+
+.dog-container.magnet-inhale::before {
+    animation: magnet-inhale 0.22s ease-out forwards;
+}
+
+.dog-container.magnet-inhale::after {
+    animation: magnet-inhale-ring 0.22s ease-out forwards;
+}
+
+@keyframes magnet-swirl {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg) scale(1.04);
+    }
+}
+
+@keyframes magnet-pulse {
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(0.84);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.06);
+    }
+}
+
+@keyframes magnet-inhale {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.72;
+    }
+
+    to {
+        transform: translate(-50%, -50%) scale(0.28);
+        opacity: 0;
+    }
+}
+
+@keyframes magnet-inhale-ring {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.82;
+    }
+
+    to {
+        transform: translate(-50%, -50%) scale(0.1);
+        opacity: 0;
+    }
+}
+
+/* === SITTING STATE === */
+.state-sitting .dog-sprite {
+    animation: dog-breathe 3s ease-in-out infinite;
+}
+
+.state-sitting .dog-tail {
+    transform-box: fill-box;
+    transform-origin: 0% 100%;
+    animation: dog-tail-slow 2.5s ease-in-out infinite;
+}
+
+.state-sitting .dog-eye-l,
+.state-sitting .dog-eye-r {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: dog-blink 5s ease-in-out infinite;
+}
+
+@keyframes dog-breathe {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes dog-tail-slow {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    30% {
+        transform: rotate(18deg);
+    }
+
+    70% {
+        transform: rotate(-6deg);
+    }
+}
+
+@keyframes dog-blink {
+
+    0%,
+    85%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    90% {
+        transform: scaleY(0.1);
+    }
+
+    95% {
+        transform: scaleY(1);
+    }
+}
+
+/* === RUNNING STATE === */
+.state-running .dog-sprite {
+    animation: dog-run-bounce 0.25s ease-in-out infinite;
+}
+
+.state-running .dog-legs-front {
+    transform-box: fill-box;
+    transform-origin: 50% 0%;
+    animation: dog-legs-front 0.25s ease-in-out infinite;
+}
+
+.state-running .dog-legs-back {
+    transform-box: fill-box;
+    transform-origin: 50% 0%;
+    animation: dog-legs-back 0.25s ease-in-out infinite;
+}
+
+.state-running .dog-tail {
+    transform-box: fill-box;
+    transform-origin: 0% 100%;
+    animation: dog-tail-fast 0.35s ease-in-out infinite;
+}
+
+.state-running .dog-ear-l,
+.state-running .dog-ear-r {
+    transform-box: fill-box;
+    animation: dog-ear-flop 0.25s ease-in-out infinite;
+}
+
+@keyframes dog-run-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes dog-legs-front {
+    0% {
+        transform: rotate(-18deg);
+    }
+
+    50% {
+        transform: rotate(18deg);
+    }
+
+    100% {
+        transform: rotate(-18deg);
+    }
+}
+
+@keyframes dog-legs-back {
+    0% {
+        transform: rotate(18deg);
+    }
+
+    50% {
+        transform: rotate(-18deg);
+    }
+
+    100% {
+        transform: rotate(18deg);
+    }
+}
+
+@keyframes dog-tail-fast {
+
+    0%,
+    100% {
+        transform: rotate(-12deg);
+    }
+
+    50% {
+        transform: rotate(22deg);
+    }
+}
+
+@keyframes dog-ear-flop {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(3px);
+    }
+}
+
+/* === HAPPY STATE === */
+.state-happy .dog-sprite {
+    animation: dog-jump 0.48s cubic-bezier(0.25, 0.82, 0.35, 1) 2;
+}
+
+.state-happy .dog-tail {
+    transform-box: fill-box;
+    transform-origin: 0% 100%;
+    animation: dog-tail-excited 0.18s ease-in-out infinite;
+}
+
+.state-happy .dog-eye-l,
+.state-happy .dog-eye-r {
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: scaleY(0.25);
+}
+
+/* === QUERYING STATE (while translating) === */
+.state-querying .dog-sprite {
+    animation: dog-jump 0.48s cubic-bezier(0.25, 0.82, 0.35, 1) infinite;
+}
+
+.state-querying .dog-tail {
+    transform-box: fill-box;
+    transform-origin: 0% 100%;
+    animation: dog-tail-excited 0.16s ease-in-out infinite;
+}
+
+@keyframes dog-jump {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    45% {
+        transform: translateY(-15px);
+    }
+
+    70% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes dog-tail-excited {
+
+    0%,
+    100% {
+        transform: rotate(-18deg);
+    }
+
+    50% {
+        transform: rotate(28deg);
+    }
+}
+
+/* === Reminder Bubble === */
+.reminder-bubble {
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border: 2px solid #66bb6a;
+    border-radius: 20px;
+    padding: 14px 24px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2e7d32;
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 6px 24px rgba(46, 125, 50, 0.2);
+    z-index: 10;
+}
+
+.reminder-bubble.visible {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+.dismiss-btn {
+    background: #43a047;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dismiss-btn:hover {
+    background: #388e3c;
+    transform: scale(1.05);
+}
+
+/* === Speech Bubble (petting) === */
+.speech-bubble {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%) scale(0.7) translateY(6px);
+    background: linear-gradient(135deg, #fffbf0, #fff5e6);
+    border: 1.5px solid #d4a574;
+    border-radius: 12px;
+    padding: 6px 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #5D4037;
+    width: clamp(120px, 86vw, 240px);
+    min-width: 120px;
+    max-width: 240px;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.3;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(-50%) scale(0.7) translateY(6px);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    pointer-events: none;
+    box-shadow: 0 3px 10px rgba(93, 64, 55, 0.12);
+    z-index: 5;
+}
+
+.speech-bubble.visible {
+    opacity: 1;
+    transform: translateX(-50%) scale(1) translateY(0);
+}
+
+/* === DeepSeek Config Panel === */
+.deepseek-config-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background: transparent;
+    z-index: 100;
+}
+
+.deepseek-config-overlay.visible {
+    display: flex;
+}
+
+.deepseek-config-card {
+    width: 100%;
+    max-width: 416px;
+    border-radius: 16px;
+    border: 1px solid rgba(93, 64, 55, 0.12);
+    background: #fffaf3;
+    color: #4e342e;
+    box-shadow: 0 18px 50px rgba(93, 64, 55, 0.2);
+    padding: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.deepseek-config-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    cursor: move;
+    user-select: none;
+}
+
+.deepseek-config-header h2 {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.config-close-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(93, 64, 55, 0.12);
+    color: #5d4037;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.config-close-btn:hover {
+    background: rgba(93, 64, 55, 0.2);
+}
+
+.deepseek-config-desc {
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.45;
+    color: #8d6e63;
+}
+
+.config-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.config-row input[type='text'],
+.config-row input[type='password'],
+.config-row select {
+    border: 1px solid rgba(93, 64, 55, 0.2);
+    border-radius: 10px;
+    padding: 8px 10px;
+    font-size: 12px;
+    outline: none;
+    color: #4e342e;
+    background: #fff;
+}
+
+.config-row input:focus,
+.config-row select:focus {
+    border-color: #ff8a65;
+    box-shadow: 0 0 0 2px rgba(255, 138, 101, 0.2);
+}
+
+.config-toggle {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.config-toggle input[type='checkbox'] {
+    width: 16px;
+    height: 16px;
+    accent-color: #e65100;
+}
+
+.config-status {
+    min-height: 20px;
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.config-status.pending {
+    color: #8d6e63;
+}
+
+.config-status.success {
+    color: #2e7d32;
+}
+
+.config-status.error {
+    color: #c62828;
+}
+
+.config-actions {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.config-actions button {
+    border: 1px solid rgba(93, 64, 55, 0.16);
+    background: #fff;
+    color: #5d4037;
+    border-radius: 10px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.config-actions button.primary {
+    background: linear-gradient(135deg, #ff8a65, #e65100);
+    color: white;
+    border-color: #e65100;
+}
+
+.config-actions button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
