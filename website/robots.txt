@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Keep the LLM index discoverable.
+Allow: /llms.txt
+
+Sitemap: https://dog-desk.vercel.app/sitemap.xml
