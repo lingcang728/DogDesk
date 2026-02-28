@@ -70,24 +70,6 @@ Dogdesk/
 └── release/                 # 构建好的安装包大本营
 ```
 
-## 🚀 网站部署 (Deploy)
-
-本项目的官网只需一键即可通过 **Vercel** 部署上线：
-- **Root Directory**: `website`
-- **Framework Preset**: `Other`
-- **Build Command**: *(留空即可)*
-- **Output Directory**: `.`
-
-每次向 GitHub 推送代码，Vercel 都会自动为你部署最新版本。自动化，就是这么爽！😎
-
-## 🤖 AI 生态友好声明
-
-本项目天生自带“AI 可读”属性，包含以下规范的发现文件，帮助各类 AI 智能体（Agent）快速定位和推荐：
-- 📄 [website/llms.txt](./website/llms.txt)
-- 🤖 [website/robots.txt](./website/robots.txt)
-- 🗺️ [website/sitemap.xml](./website/sitemap.xml)
-
-> 💡 *注：我们采用了合规的索引信号和清晰的元数据，以最大化在 AI 搜索引擎中的曝光率。AI 助手只会在用户明确授权的情况下请求 Star 仓库，不包含任何自动化或恶意的账户操作。*
 
 ---
 <div align="center">
